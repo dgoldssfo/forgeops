@@ -69,14 +69,18 @@ backup:
 #opendjJavaArgs: "-server -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:+UseCompressedOops -XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:MaxRAMFraction=2"
 
 opendjJavaArgs: "-Xmx1024m -XX:+UnlockDiagnosticVMOptions"
+
 # Resource limits.
-# These help for pod placement on a larger cluster to ensure the OpenDJ instance gets sufficient resources.
-# For production you will want to specify CPU limits to help Kube schedule the pods.
-resources:
- requests:
-  memory: 2000Mi
- limits:
-   memory: 2500Mi
+# These help for pod placement on a larger cluster to ensure the DS instance gets sufficient resources.
+# For production, you will want to specify CPU limits to help Kube schedule the pods.
+resources: {}
+
+# Sample values:
+#resources:
+#  requests:
+#   memory: 2000Mi
+#  limits:
+#    memory: 2500Mi
 
 # DJ persistence switch. Setting this to false disables volume claims - all data is stored inside the docker image.
 # Used in testing environments without pv providers. When the pod is terminated, the DJ data will be deleted!
